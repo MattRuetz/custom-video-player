@@ -12,12 +12,10 @@ const duration = document.querySelector('.time-duration');
 const fullscreenBtn = document.querySelector('.fullscreen');
 
 // Play & Pause ----------------------------------- //
-
 const showPlayIcon = () => {
     playBtn.classList.replace('fa-pause', 'fa-play');
     playBtn.setAttribute('title', 'Play');
 }
-
 
 const togglePlay = () => {
     if(video.paused) {
@@ -32,7 +30,6 @@ const togglePlay = () => {
 }
 
 // Progress Bar ---------------------------------- //
-
 // Calculate display time values
 const displayTime = (time) => {
     const minutes = Math.floor(time / 60);
@@ -50,16 +47,13 @@ const updateProgress = () => {
 }
 
 const setProgress = (event) => {
-    
     const newTime = event.offsetX / progressRange.offsetWidth;
     progressBar.style.width = `${newTime}%`;
     video.currentTime = newTime * video.duration;
     updateProgress();
 }
 
-
 // Volume Controls --------------------------- //
-
 let lastVolume = 1;
 
 // Volume Bar
@@ -71,7 +65,6 @@ const changeVolume = (e) => {
     } else if (volume > 0.9) {
         volume = 1;
     }
-
     volumeBar.style.width = `${volume*100}%`;
     video.volume = volume;
 
@@ -90,7 +83,6 @@ const changeVolume = (e) => {
 }
 
 // Mute / Unmute
-
 const toggleMute = () => {
 
     volumeIcon.className = '';
@@ -109,11 +101,9 @@ const toggleMute = () => {
 }
 
 // Change Playback Speed -------------------- //
-
 const changeSpeed = () => {
     video.playbackRate = speed.value;
 }
-
 
 // Fullscreen ------------------------------- //
 /* View in fullscreen */
@@ -132,7 +122,6 @@ function openFullscreen(element) {
   }
   video.classList.add('video-fullscreen');
 }
-
 /* Close fullscreen */
 function closeFullscreen() {
   if (document.exitFullscreen) {
@@ -154,11 +143,7 @@ let fullscreen = false;
 
 // Toggle fullscreen
 function toggleFullscreen() {
-  if (!fullscreen) {
-    openFullscreen(player);
-  } else {
-    closeFullscreen();
-  }
+  fullscreen ? closeFullscreen() : openFullscreen(player);
   fullscreen = !fullscreen;
 }
 
